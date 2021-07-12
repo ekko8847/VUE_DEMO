@@ -20,9 +20,7 @@ export default {
       title: "",
     };
   },
-  mounted() {
-    this.$bus.$emit("keyup");
-  },
+
   methods: {
     handleEnter() {
       const title = this.title.trim();

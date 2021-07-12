@@ -55,17 +55,19 @@ export default {
     },
     confirmDelete() {
       const {
-        deleteTodo,
         index,
         todo: { title, completed },
+        deleteTodo,
       } = this;
       if (!completed) {
         if (confirm(`确定要删除未完成的${title}吗?`)) {
           deleteTodo(index);
+          // this.$emit("delTodo", index);
         }
         return;
       }
       deleteTodo(index);
+      // this.$emit("delTodo", index);
     },
   },
 };

@@ -21,8 +21,6 @@ export default {
   name: "Footer",
   props: {
     todos: Array,
-    selectAll: Function,
-    removeTodos: Function,
   },
   computed: {
     completeSize() {
@@ -36,20 +34,20 @@ export default {
         return this.todos.length === this.completeSize && this.completeSize;
       },
       set(value) {
-        this.selectAll(value);
+        this.$emit("checkAll", value);
       },
     },
   },
   methods: {
     clearCompletedTodos() {
-      const { todos, completeSize, removeTodos } = this;
+      const { todos, completeSize } = this;
       if (completeSize === todos.length) {
         if (confirm(`确定删除所有吗?`)) {
-          removeTodos();
+          this.$emit("removeAll");
         }
         return;
       }
-      removeTodos();
+      this.$emit("removeAll");
     },
   },
 };

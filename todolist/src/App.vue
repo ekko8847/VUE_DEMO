@@ -3,12 +3,7 @@
     <div class="todo-wrap">
       <Header :addTodo="addTodo" />
       <List :todos="todos" :deleteTodo="deleteTodo" :toggleTodo="toggleTodo" />
-      <Footer
-        :todos="todos"
-        :selectAll="selectAll"
-        :removeTodos="removeTodos"
-      />
-
+      <Footer :todos="todos" @checkAll="selectAll" @removeAll="removeTodos" />
       <hr />
       <!-- <props-test name="tom" :myAge="-1"/> -->
     </div>
@@ -37,7 +32,7 @@ export default {
     setTimeout(() => {
       this.todos = JSON.parse(localStorage.getItem("todos_id")) || [];
     }, 1000);
-    this.$bus.$on("keyup", this.addTodo);
+    this.$bus.$on("keyup.enter", this.addTodo);
   },
   watch: {
     todos: {
